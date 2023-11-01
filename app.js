@@ -7,7 +7,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 
 //mioddlewares
-
+app.use(express.static(`${__dirname}/public`));
 app.use(express.json()); // app.use is used to a midddleware in the middleware stack
 
 app.use(morgan('dev'));
