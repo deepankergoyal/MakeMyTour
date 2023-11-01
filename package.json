@@ -1,0 +1,24 @@
+{
+  "name": "makemytour",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepankergoyal/MakeMyTour.git"
+  },
+  "author": "Deepanker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepankergoyal/MakeMyTour/issues"
+  },
+  "homepage": "https://github.com/deepankergoyal/MakeMyTour#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  }
+}
