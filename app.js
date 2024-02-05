@@ -11,6 +11,10 @@ app.use(express.json()); // app.use is used to a midddleware in the middleware s
 
 app.use(morgan('dev'));
 
+// app.get('/', (req, res) => {
+//   res.send('Hello, world!'); // Sends "Hello, world!" as the response when someone accesses the root route
+// });
+
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
