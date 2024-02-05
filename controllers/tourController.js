@@ -1,12 +1,21 @@
 const Tour = require('./../models/tourModel');
 
-// const tours = JSON.parse(
-//   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`),
-// );  //we dont need to have file opertions as we have stareted using mogodb
-
 exports.getAllTours = async (req, res) => {
   try {
-    const tours = await Tour.find();
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'limit', 'sort', 'fields'];
+
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    console.log(req.query);
+
+    //filtering for >=,<=,<,>
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lt|lte)\b/g, (match) => `$${match}`);
+
+    const query = Tour.find(JSON.parse(queryStr)); //building the query
+
+    const tours = await query; // executig thr query
 
     res.status(200).json({
       status: 'success',
@@ -43,14 +52,14 @@ exports.createTour = async (req, res) => {
   }
 };
 
-exports.addTour = (req, res) => {
-  // res.status(201).json({
-  //   status: 'success',
-  //   // data: {
-  //   //   tour: newTour,
-  //   // },
-  // });
-};
+// exports.addTour = (req, res) => {
+//   // res.status(201).json({
+//   //   status: 'success',
+//   //   // data: {
+//   //   //   tour: newTour,
+//   //   // },
+//   // });
+// };
 exports.getTour = async (req, res) => {
   try {
     const tour = await Tour.findById(req.params.id);
